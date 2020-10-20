@@ -15,17 +15,13 @@ module "gke_cluster" {
   description = "test laba k8s cluster"
   region  = var.region
   cluster_name = "gke-cluster-${terraform.workspace}"
+  kubernetes_version = "1.15.12-gke.2"
 
   node_pools = [
     {
-      name            = "pool-01"
-      machine_type      = "n1-standard-2"
-      node_count       = 1
-    },
-    {
-      name              = "pool-02"
-      machine_type      = "n1-standard-2"
-      node_count         = 1
+      name              = "pool-01"
+      machine_type      = "e2-medium"
+      node_count         = 2
       disk_size_gb      = 150
       disk_type         = "pd-standard"
       image_type        = "COS"
@@ -38,10 +34,6 @@ module "gke_cluster" {
     }
     pool-01 = {
       name = "pool-01"
-    }
-    pool-02 = {
-      name = "pool-02"
-      active = true
     }
   }
 

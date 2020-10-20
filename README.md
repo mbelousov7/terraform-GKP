@@ -49,7 +49,7 @@ gcloud services enable container.googleapis.com
 gcloud services enable compute.googleapis.com
 ```
 
-##Run Terraform
+##Run Terraform example
 1. Define main terraform variables
 ```
 export TF_VAR_project=${GCP_PROJECT_ID}
@@ -57,11 +57,25 @@ export TF_VAR_file_sa=./env/${GCP_PROJECT_ID}-sa.json
 ```
 2. Create workspace for your project(enviroment)
 ```
+cd example
 terraform workspace new ${GCP_PROJECT_ID}
 
 ```
 3. Run terraform
 ```
+terraform workspace select ${GCP_PROJECT_ID}
+terraform init
+terraform plan -var-file="./env/${GCP_PROJECT_ID}.tfvars"
+terraform apply -var-file="./env/${GCP_PROJECT_ID}.tfvars"
+terraform destroy -var-file="env/${GCP_PROJECT_ID}.tfvars"
+```
+
+##re-run example
+```
+cd example
+export GCP_PROJECT_ID=mbelousov-kubernetes-laba
+export TF_VAR_project=${GCP_PROJECT_ID}
+export TF_VAR_file_sa=./env/${GCP_PROJECT_ID}-sa.json
 terraform workspace select ${GCP_PROJECT_ID}
 terraform init
 terraform plan -var-file="./env/${GCP_PROJECT_ID}.tfvars"
