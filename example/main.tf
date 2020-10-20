@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = "~> 0.13"
 }
 
 provider "google" {
@@ -15,7 +15,7 @@ module "gke_cluster" {
   description = "test laba k8s cluster"
   region  = var.region
   cluster_name = "gke-cluster-${terraform.workspace}"
-  kubernetes_version = "1.15.12-gke.2"
+  kubernetes_version = "latest"
 
   node_pools = [
     {
