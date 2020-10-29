@@ -43,6 +43,11 @@ variable "monitoring_service" {
   default     = "none"
 }
 
+variable "enable_binary_authorization" {
+  description = "Enable BinAuthZ Admission controller"
+  default     = false
+}
+
 variable "http_load_balancing" {
   description = "Whether to enable the http (L7) load balancing addon"
   type        = bool
