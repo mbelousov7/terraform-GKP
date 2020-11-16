@@ -29,7 +29,7 @@ YOUR_TERRAFORM_SA_NAME - name for terraform service account in GCP
 gcloud iam service-accounts create ${GCP_TF_SA} \
   --display-name "Terraform admin account"
 
-gcloud iam service-accounts keys create ./env/${GCP_PROJECT_ID}-sa.json \
+gcloud iam service-accounts keys create ./secrets/${GCP_PROJECT_ID}-sa.json \
   --iam-account ${GCP_TF_SA}@${GCP_PROJECT_ID}.iam.gserviceaccount.com
 ```
 4. Grant nessery service account permission for ${GCP_TF_SA}
@@ -53,7 +53,7 @@ gcloud services enable compute.googleapis.com
 1. Define main terraform variables
 ```
 export TF_VAR_project=${GCP_PROJECT_ID}
-export TF_VAR_file_sa=./env/${GCP_PROJECT_ID}-sa.json
+export TF_VAR_file_sa=./secrets/${GCP_PROJECT_ID}-sa.json
 ```
 2. Create workspace for your project(enviroment)
 ```
@@ -67,7 +67,7 @@ terraform workspace select ${GCP_PROJECT_ID}
 terraform init
 terraform plan -var-file="./env/${GCP_PROJECT_ID}.tfvars"
 terraform apply -var-file="./env/${GCP_PROJECT_ID}.tfvars"
-terraform destroy -var-file="env/${GCP_PROJECT_ID}.tfvars"
+terraform destroy -var-file="./env/${GCP_PROJECT_ID}.tfvars"
 ```
 
 ##re-run example
