@@ -15,13 +15,13 @@ module "gke_cluster" {
   description = "test laba k8s cluster"
   region  = var.region
   cluster_name = "gke-cluster-${terraform.workspace}"
-  kubernetes_version = "latest"
+  kubernetes_version = "1.16.13"
 
   node_pools = [
     {
       name              = "pool-01"
       machine_type      = "e2-medium"
-      node_count         = 2
+      node_count         = 3
       disk_size_gb      = 150
       disk_type         = "pd-standard"
       image_type        = "COS"
